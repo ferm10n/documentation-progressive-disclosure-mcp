@@ -1,0 +1,24 @@
+{
+  "name": "documentation-progressive-disclosure-mcp",
+  "version": "1.0.0",
+  "description": "An MCP server that provides access to documentation using progressive disclosure, to avoid context bloat and navigating large sets of documentation",
+  "type": "module",
+  "bin": {
+    "documentation-progressive-disclosure-mcp": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mcp", "documentation", "progressive-disclosure"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "^5.9.3"
+  }
+}
