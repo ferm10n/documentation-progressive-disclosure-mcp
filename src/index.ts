@@ -17,7 +17,20 @@ interface DumpedDoc {
 }
 
 // Store dumped documentation for feedback
+// Documents older than 1 hour will be cleaned up
 const dumpedDocs: Map<string, DumpedDoc> = new Map();
+const CLEANUP_INTERVAL_MS = 60 * 60 * 1000; // 1 hour
+const MAX_DOCUMENT_AGE_MS = 60 * 60 * 1000; // 1 hour
+
+// Periodically clean up old dumped documents to prevent memory leaks
+setInterval(() => {
+  const now = Date.now();
+  for (const [path, doc] of dumpedDocs.entries()) {
+    if (now - doc.timestamp > MAX_DOCUMENT_AGE_MS) {
+      dumpedDocs.delete(path);
+    }
+  }
+}, CLEANUP_INTERVAL_MS);
 
 /**
  * Parse markdown file and extract headers
@@ -311,7 +324,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       content: [
         {
           type: "text",
-          text: `Unknown tool: ${name}`,
+          text: `Unknown tool: ${name}. Available tools: probe_documentation, dump_documentation, give_feedback`,
         },
       ],
     };
