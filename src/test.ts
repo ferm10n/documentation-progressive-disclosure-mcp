@@ -2,15 +2,9 @@
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { spawn } from "child_process";
 
 async function testServer() {
   console.log("Starting MCP server test...\n");
-
-  // Start the server
-  const serverProcess = spawn("node", ["build/index.js"], {
-    cwd: process.cwd(),
-  });
 
   const transport = new StdioClientTransport({
     command: "node",
@@ -110,7 +104,6 @@ async function testServer() {
     process.exit(1);
   } finally {
     await client.close();
-    serverProcess.kill();
   }
 }
 
