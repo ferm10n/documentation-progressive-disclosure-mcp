@@ -29,6 +29,20 @@ npm install
 npm run build
 ```
 
+## Quick Start
+
+Try it with the included example documentation:
+
+```bash
+# Build the project
+npm run build
+
+# Run the test suite (uses example-docs.md)
+node build/test.js
+```
+
+The repository includes `example-docs.md` that you can use to explore the server's functionality.
+
 ## Usage
 
 ### As an MCP Server
